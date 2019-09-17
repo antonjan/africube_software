@@ -705,7 +705,7 @@
     </param>
     <param>
       <key>note</key>
-      <value>nc -l 8011 sudo rpitx -i- -m IQFLOAT -f 67000</value>
+      <value>nc -l 8011 | sudo /home/pi/rpitx/rpitx -i- -m IQFLOAT -s 48000 -f 430225</value>
     </param>
   </block>
   <block>

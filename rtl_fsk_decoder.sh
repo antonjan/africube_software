@@ -1,0 +1,1 @@
+rtl_fm -f 402480000 -M raw -s 96k -g 49.6 | ../bin/fsk_demod --cs16 -b 1 -u 45000 2 96000 4800 - - 2>/dev/null | python ../bin/bit_to_samples.py 48000 4800 | sox -t raw -r 48k -e unsigned-integer -b 8 -c 1 - -r 48000 -b 8 -t wav - 2>/dev/null| ../bin/rs41ecc --ecc --ptu --crc
