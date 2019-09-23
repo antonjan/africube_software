@@ -13,7 +13,7 @@ class top_block(gr.top_block):
         ampl = 0.2
 
         # Generate a sine wave
-        src = analog.sig_source_c(sample_rate, analog.GR_SIN_WAVE, 350, ampl)
+        src = analog.sig_source_c(sample_rate, analog.GR_SIN_WAVE, 1000, ampl)
 
         # Set the destination to nc to then send the samples to rpitx
         dst = blks2.tcp_sink(
@@ -29,7 +29,7 @@ class top_block(gr.top_block):
 if __name__ == '__main__':
 
     # Set the target frequency
-    freq = 144600
+    freq = 145825
 
     # Spawn the processes, pipe them together, and run the GNURadio block
     try:
