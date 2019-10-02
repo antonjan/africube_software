@@ -31,4 +31,5 @@ Full-duplex: YES
     CORR freq range:  MHz
   Sample rates: 0.25, 0.5, 1, 2, 2.048, 6, 7, 8, 9, 10 MSps
   Filter bandwidths: 0.2, 0.3, 0.6, 1.536, 5, 6, 7, 8 MHz
-
+##############################################################3
+sudo pip install afsk
