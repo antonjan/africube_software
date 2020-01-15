@@ -105,7 +105,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>2000000</value>
+      <value>2048000</value>
     </param>
   </block>
   <block>
@@ -290,7 +290,7 @@
     </param>
     <param>
       <key>samp_rate</key>
-      <value>125000</value>
+      <value>81920</value>
     </param>
     <param>
       <key>waveform</key>
@@ -372,7 +372,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(840, 140)</value>
+      <value>(832, 68)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -631,7 +631,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>file</key>
@@ -3994,7 +3994,7 @@
     </param>
     <param>
       <key>args</key>
-      <value>driver=sdrplay</value>
+      <value>driver=mir</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -4002,7 +4002,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(96, 228)</value>
+      <value>(104, 316)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4121,7 +4121,7 @@
     </param>
     <param>
       <key>decim</key>
-      <value>16</value>
+      <value>25</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -4307,7 +4307,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(824, 68)</value>
+      <value>(840, 204)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4343,7 +4343,7 @@
     </param>
     <param>
       <key>samp_rate</key>
-      <value>125000</value>
+      <value>8192</value>
     </param>
     <param>
       <key>title</key>

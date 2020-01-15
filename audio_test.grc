@@ -124,7 +124,7 @@
     </param>
     <param>
       <key>device_name</key>
-      <value></value>
+      <value>plughw:0,1</value>
     </param>
     <param>
       <key>_enabled</key>

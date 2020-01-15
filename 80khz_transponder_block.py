@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block
-# Generated: Wed Jan 15 22:22:56 2020
+# Generated: Wed Oct  9 18:38:30 2019
 ##################################################
 
 from gnuradio import analog
@@ -25,7 +25,7 @@ class top_block(gr.top_block):
         ##################################################
         # Variables
         ##################################################
-        self.samp_rate = samp_rate = 2048000
+        self.samp_rate = samp_rate = 2000000
 
         ##################################################
         # Blocks
@@ -48,7 +48,7 @@ class top_block(gr.top_block):
         	port=8011,
         	server=False,
         )
-        self.analog_sig_source_x_2 = analog.sig_source_c(81920, analog.GR_SIN_WAVE, 48000, 0.3, 0)
+        self.analog_sig_source_x_2 = analog.sig_source_c(125000, analog.GR_SIN_WAVE, 48000, 0.3, 0)
 
         ##################################################
         # Connections

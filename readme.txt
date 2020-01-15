@@ -33,3 +33,5 @@ Full-duplex: YES
   Filter bandwidths: 0.2, 0.3, 0.6, 1.536, 5, 6, 7, 8 MHz
 ##############################################################3
 sudo pip install afsk
+
+sudo direwolf -t 0 -a -d  -c /home/pi/direwolf/telemetry-toolkit/telem-africube.conf

@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Top Block
-# Generated: Wed Jan 15 22:22:56 2020
+# Title: final_africube.py
+# Generated: Sat Oct 12 07:00:56 2019
 ##################################################
 
 from gnuradio import analog
+from gnuradio import audio
 from gnuradio import blocks
 from gnuradio import eng_notation
 from gnuradio import filter
@@ -17,15 +18,15 @@ from grc_gnuradio import blks2 as grc_blks2
 from optparse import OptionParser
 
 
-class top_block(gr.top_block):
+class top_block_africube_final(gr.top_block):
 
     def __init__(self):
-        gr.top_block.__init__(self, "Top Block")
+        gr.top_block.__init__(self, "final_africube.py")
 
         ##################################################
         # Variables
         ##################################################
-        self.samp_rate = samp_rate = 2048000
+        self.samp_rate = samp_rate = 2000000
 
         ##################################################
         # Blocks
@@ -36,9 +37,8 @@ class top_block(gr.top_block):
                 taps=None,
                 fractional_bw=None,
         )
-        self.blocks_vector_source_x_0 = blocks.vector_source_c((1,1,1,0,1,0,0,0,1,1,1,0,1,1,1,0,1,0,1,1,1,0,0,0,0,0,0,1,1,1,0,1,0,0,0,1,1,1,0,1,1,1,0,1,0,1,1,1,0,0,0,0,0,0,1,0,1,1,1,0,0,0,1,0,1,0,1,1,1,0,1,0,0,0,1,0,1,1,1,0,1,0,0,0,1,0,1,0,0,0,1,1,1,0,1,0,1,1,1,0,1,0,0,0,1,0,1,0,1,1,1,0,1,0,0,0,1,1,1,0,1,0,1,0,1,0,0,0,1,0,0,0,0,0,0,1,1,1,0,1,0,1,0,0,0,1,0,0,0,0,0,0,1,1,1,0,1,1,1,0,1,0,1,0,0,0,1,0,1,1,1,0,1,0,0,0,1,1,1,0,1,0,1,0,1,0,1,0,0,0,1,0,1,1,1,0,0,0,0,1,0,1,0,0,0,1,1,1,0,1,0,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,), True, 1, [])
-        self.blocks_repeat_0 = blocks.repeat(gr.sizeof_gr_complex*1, 15000)
         self.blocks_multiply_xx_1 = blocks.multiply_vcc(1)
+        self.blocks_multiply_const_vxx_2 = blocks.multiply_const_vcc((0.8, ))
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vcc((2, ))
         self.blocks_file_source_1 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/pi/africube_software/iq_fifo', True)
         self.blocks_add_xx_1 = blocks.add_vcc(1)
@@ -48,18 +48,27 @@ class top_block(gr.top_block):
         	port=8011,
         	server=False,
         )
-        self.analog_sig_source_x_2 = analog.sig_source_c(81920, analog.GR_SIN_WAVE, 48000, 0.3, 0)
+        self.audio_source_0 = audio.source(44100, 'plughw:0,1', True)
+        self.analog_sig_source_x_0 = analog.sig_source_c(88200, analog.GR_COS_WAVE, 38000, 0.9, 0)
+        self.analog_nbfm_tx_0 = analog.nbfm_tx(
+        	audio_rate=44100,
+        	quad_rate=88200,
+        	tau=75e-6,
+        	max_dev=1700,
+        	fh=-1.0,
+                )
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.analog_sig_source_x_2, 0), (self.blocks_multiply_xx_1, 0))    
+        self.connect((self.analog_nbfm_tx_0, 0), (self.blocks_multiply_xx_1, 1))    
+        self.connect((self.analog_sig_source_x_0, 0), (self.blocks_multiply_xx_1, 0))    
+        self.connect((self.audio_source_0, 0), (self.analog_nbfm_tx_0, 0))    
         self.connect((self.blocks_add_xx_1, 0), (self.blks2_tcp_sink_1, 0))    
         self.connect((self.blocks_file_source_1, 0), (self.rational_resampler_xxx_0, 0))    
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.blocks_add_xx_1, 1))    
-        self.connect((self.blocks_multiply_xx_1, 0), (self.blocks_add_xx_1, 0))    
-        self.connect((self.blocks_repeat_0, 0), (self.blocks_multiply_xx_1, 1))    
-        self.connect((self.blocks_vector_source_x_0, 0), (self.blocks_repeat_0, 0))    
+        self.connect((self.blocks_multiply_const_vxx_2, 0), (self.blocks_add_xx_1, 0))    
+        self.connect((self.blocks_multiply_xx_1, 0), (self.blocks_multiply_const_vxx_2, 0))    
         self.connect((self.rational_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_0, 0))    
 
     def get_samp_rate(self):
@@ -69,7 +78,7 @@ class top_block(gr.top_block):
         self.samp_rate = samp_rate
 
 
-def main(top_block_cls=top_block, options=None):
+def main(top_block_cls=top_block_africube_final, options=None):
 
     tb = top_block_cls()
     tb.start()

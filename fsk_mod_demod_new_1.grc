@@ -713,7 +713,7 @@
     </param>
     <param>
       <key>interp</key>
-      <value>100</value>
+      <value>400</value>
     </param>
     <param>
       <key>maxoutbuf</key>
