@@ -21,3 +21,25 @@ Usage: sendiq [-i File Input][-s Samplerate][-l] [-f Frequency] [-h Harmonic num
 -t            IQ type (i16 default) {i16,u8,float,double}<br>
 -?            help (this help).<br>
 
+
+## decoding the telemetry
+##multimon-ng
+
+Multimon-ng is a general purpose decoder. It can take wav or raw files and decode a variety of modes among which: CW, AFSK, FSK...
+## How to CW
+
+First you have to use sox to convert ogg files from SatNOGS download to 22050Hz raw file:
+sox file.ogg -r 22050 file.raw gain 6
+The gain is in dB and has a considerable impact on the decoding in the special case of CW. You have to adjust gain to get proper decoding.
+
+Then you must apply on the raw file the proper decoder:
+multimon-ng -a MORSE_CW -t raw file.raw
+## How to AFSK
+
+First convert to raw sound file (sampling frequency 22050Hz) using sox
+sox -t ogg $file -r 22050 -t raw file.raw $soxopts
+
+Then use multimon-ng with AFSK1200 decoder
+multimon-ng -t raw -a AFSK1200 $file.raw
+
+You can add more decoders if needed with additionnal "-a" options 
