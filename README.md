@@ -30,8 +30,6 @@ Usage: sendiq [-i File Input][-s Samplerate][-l] [-f Frequency] [-h Harmonic num
 Multimon-ng is a general purpose decoder. It can take wav or raw files and decode a variety of modes among which: CW, AFSK, FSK...
 ## How to CW
 
-First you have to use sox to convert ogg files from SatNOGS download to 22050Hz raw file:
-sox file.ogg -r 22050 file.raw gain 6
 The gain is in dB and has a considerable impact on the decoding in the special case of CW. You have to adjust gain to get proper decoding.
 
 Then you must apply on the raw file the proper decoder:
@@ -63,4 +61,4 @@ WXtoImg is a program used to produce neat weather pictures from APT format recep
 
 It uses a .wav file and produces weather picture with possible nice overlays (frontiers, colors...).
 Usage
-wxtoimg -t n -e HVC -N 1193773_2019-11-12T07-13-50.wav > satnogs_1193773_2019-11-12T07-13-50.png 
+wxtoimg -t n -e HVC -N 1193773_2019-11-12T07-13-50.wav > 1193773_2019-11-12T07-13-50.png 
