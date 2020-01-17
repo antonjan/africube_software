@@ -55,5 +55,12 @@ QSSTV is a modem software to send and receive SSTV (Slow Scan Television).
 Usage
 
    
-    Open QSSTV and specify "Sound>Sound Input: from file"
-    Press the play button and you will be asked to select the previously generated wav file. The decoding should start now.
+Open QSSTV and specify "Sound>Sound Input: from file"
+Press the play button and you will be asked to select the previously generated wav file. The decoding should start now.
+##WXtoImg
+
+WXtoImg is a program used to produce neat weather pictures from APT format receptions of NOAA satellites.
+
+It uses a .wav file and produces weather picture with possible nice overlays (frontiers, colors...).
+Usage
+wxtoimg -t n -e HVC -N 1193773_2019-11-12T07-13-50.wav > satnogs_1193773_2019-11-12T07-13-50.png 
