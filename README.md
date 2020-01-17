@@ -22,7 +22,7 @@ Usage: sendiq [-i File Input][-s Samplerate][-l] [-f Frequency] [-h Harmonic num
 -?            help (this help).<br>
 
 
-## decoding the telemetry
+# Decoding the telemetry
 ##multimon-ng
 
 Multimon-ng is a general purpose decoder. It can take wav or raw files and decode a variety of modes among which: CW, AFSK, FSK...
