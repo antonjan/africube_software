@@ -24,8 +24,8 @@ Usage: sendiq [-i File Input][-s Samplerate][-l] [-f Frequency] [-h Harmonic num
 -?            help (this help).<br>
 
 
-# Decoding the telemetry
-##multimon-ng
+# Decoding the telemetry cw and afsk/aprs
+## multimon-ng
 
 Multimon-ng is a general purpose decoder. It can take wav or raw files and decode a variety of modes among which: CW, AFSK, FSK...
 ## How to CW
@@ -38,10 +38,22 @@ Then you must apply on the raw file the proper decoder:
 multimon-ng -a MORSE_CW -t raw file.raw
 ## How to AFSK
 
-First convert to raw sound file (sampling frequency 22050Hz) using sox
-sox -t ogg $file -r 22050 -t raw file.raw $soxopts
-
-Then use multimon-ng with AFSK1200 decoder
+Use multimon-ng with AFSK1200 decoder
 multimon-ng -t raw -a AFSK1200 $file.raw
 
-You can add more decoders if needed with additionnal "-a" options 
+You can add more decoders if needed with additionnal "-a" options
+## Direwolf
+
+Direwolf is a software encoder/decoder for APRS (AX.25). It can take raw files and decode APRS.
+How to
+
+direwolf -B 1200 -b 16 -n 1 -r 48000 -q hd -t 0 -q h -q d -d p -d t -a 0 - < file.raw
+
+## QSSTV
+
+QSSTV is a modem software to send and receive SSTV (Slow Scan Television).
+Usage
+
+   
+    Open QSSTV and specify "Sound>Sound Input: from file"
+    Press the play button and you will be asked to select the previously generated wav file. The decoding should start now.
