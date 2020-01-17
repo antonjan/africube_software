@@ -1,5 +1,7 @@
 # Africube_software
 This repository will have the Transponder and Telemetry software applications.
+Diagram
+![Block Diagram](Digital_Transponder_v4.jpg?raw=true "Block Diagram")<br>
 
 # Exsample for rpitx V2 not (usable on PI 4)
 ## Send Audio from svxlink
