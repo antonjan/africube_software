@@ -24,6 +24,9 @@ Usage: sendiq [-i File Input][-s Samplerate][-l] [-f Frequency] [-h Harmonic num
 -?            help (this help).<br>
 
 
+# Ground Station Configuration.
+![Block Diagram](https://github.com/antonjan/africube_software/wiki/Telemetry-Decoding?raw=true "Ground Station")<br>
+
 # Decoding the telemetry cw and afsk/aprs
 ## multimon-ng
 
