@@ -24,8 +24,8 @@ Usage: sendiq [-i File Input][-s Samplerate][-l] [-f Frequency] [-h Harmonic num
 -?            help (this help).<br>
 
 # Aditional gnuradio addons requerd
-boost<br>
-
+libboostall-dev<br>
+gnuradio 3.7<br>
 gr-bruninga Requierd for FSK generation for FM telemetry<br>
 gr-sdrplay  Requierd for MSI miri sdr froned chipset driver<br>
 gr-ax25 Requierd for AFSK decoding for command controle<br>
