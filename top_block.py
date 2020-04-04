@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block
-# Generated: Wed Jan 15 22:22:56 2020
+# Generated: Sat Apr  4 15:00:44 2020
 ##################################################
 
 from gnuradio import analog
@@ -15,6 +15,8 @@ from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from grc_gnuradio import blks2 as grc_blks2
 from optparse import OptionParser
+import correctiq
+import sdrplay
 
 
 class top_block(gr.top_block):
@@ -25,23 +27,26 @@ class top_block(gr.top_block):
         ##################################################
         # Variables
         ##################################################
-        self.samp_rate = samp_rate = 2048000
+        self.samp_rate = samp_rate = 2205000
 
         ##################################################
         # Blocks
         ##################################################
+        self.sdrplay_rsp1_source_0 = sdrplay.rsp1_source(435.100e6, 1536, True, 40, False, False,
+                True, 0, 1, samp_rate, True, '0')
+            
         self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
                 interpolation=1,
                 decimation=25,
                 taps=None,
                 fractional_bw=None,
         )
+        self.correctiq_correctiq_0 = correctiq.correctiq()
         self.blocks_vector_source_x_0 = blocks.vector_source_c((1,1,1,0,1,0,0,0,1,1,1,0,1,1,1,0,1,0,1,1,1,0,0,0,0,0,0,1,1,1,0,1,0,0,0,1,1,1,0,1,1,1,0,1,0,1,1,1,0,0,0,0,0,0,1,0,1,1,1,0,0,0,1,0,1,0,1,1,1,0,1,0,0,0,1,0,1,1,1,0,1,0,0,0,1,0,1,0,0,0,1,1,1,0,1,0,1,1,1,0,1,0,0,0,1,0,1,0,1,1,1,0,1,0,0,0,1,1,1,0,1,0,1,0,1,0,0,0,1,0,0,0,0,0,0,1,1,1,0,1,0,1,0,0,0,1,0,0,0,0,0,0,1,1,1,0,1,1,1,0,1,0,1,0,0,0,1,0,1,1,1,0,1,0,0,0,1,1,1,0,1,0,1,0,1,0,1,0,0,0,1,0,1,1,1,0,0,0,0,1,0,1,0,0,0,1,1,1,0,1,0,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,), True, 1, [])
         self.blocks_repeat_0 = blocks.repeat(gr.sizeof_gr_complex*1, 15000)
+        self.blocks_null_sink_1 = blocks.null_sink(gr.sizeof_gr_complex*1)
         self.blocks_multiply_xx_1 = blocks.multiply_vcc(1)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vcc((2, ))
-        self.blocks_file_source_1 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/pi/africube_software/iq_fifo', True)
-        self.blocks_add_xx_1 = blocks.add_vcc(1)
         self.blks2_tcp_sink_1 = grc_blks2.tcp_sink(
         	itemsize=gr.sizeof_gr_complex*1,
         	addr='127.0.0.1',
@@ -54,13 +59,13 @@ class top_block(gr.top_block):
         # Connections
         ##################################################
         self.connect((self.analog_sig_source_x_2, 0), (self.blocks_multiply_xx_1, 0))    
-        self.connect((self.blocks_add_xx_1, 0), (self.blks2_tcp_sink_1, 0))    
-        self.connect((self.blocks_file_source_1, 0), (self.rational_resampler_xxx_0, 0))    
-        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.blocks_add_xx_1, 1))    
-        self.connect((self.blocks_multiply_xx_1, 0), (self.blocks_add_xx_1, 0))    
+        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.blks2_tcp_sink_1, 0))    
+        self.connect((self.blocks_multiply_xx_1, 0), (self.blocks_null_sink_1, 0))    
         self.connect((self.blocks_repeat_0, 0), (self.blocks_multiply_xx_1, 1))    
         self.connect((self.blocks_vector_source_x_0, 0), (self.blocks_repeat_0, 0))    
+        self.connect((self.correctiq_correctiq_0, 0), (self.rational_resampler_xxx_0, 0))    
         self.connect((self.rational_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_0, 0))    
+        self.connect((self.sdrplay_rsp1_source_0, 0), (self.correctiq_correctiq_0, 0))    
 
     def get_samp_rate(self):
         return self.samp_rate

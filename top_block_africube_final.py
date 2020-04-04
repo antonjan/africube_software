@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: final_africube.py
-# Generated: Sat Oct 12 07:00:56 2019
+# Generated: Fri Jan 24 21:36:25 2020
 ##################################################
 
 from gnuradio import analog
@@ -57,10 +57,13 @@ class top_block_africube_final(gr.top_block):
         	max_dev=1700,
         	fh=-1.0,
                 )
+        self.analog_agc_xx_0 = analog.agc_cc(1e-4, 1.0, 1.0)
+        self.analog_agc_xx_0.set_max_gain(4)
 
         ##################################################
         # Connections
         ##################################################
+        self.connect((self.analog_agc_xx_0, 0), (self.blocks_multiply_const_vxx_0, 0))    
         self.connect((self.analog_nbfm_tx_0, 0), (self.blocks_multiply_xx_1, 1))    
         self.connect((self.analog_sig_source_x_0, 0), (self.blocks_multiply_xx_1, 0))    
         self.connect((self.audio_source_0, 0), (self.analog_nbfm_tx_0, 0))    
@@ -69,7 +72,7 @@ class top_block_africube_final(gr.top_block):
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.blocks_add_xx_1, 1))    
         self.connect((self.blocks_multiply_const_vxx_2, 0), (self.blocks_add_xx_1, 0))    
         self.connect((self.blocks_multiply_xx_1, 0), (self.blocks_multiply_const_vxx_2, 0))    
-        self.connect((self.rational_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_0, 0))    
+        self.connect((self.rational_resampler_xxx_0, 0), (self.analog_agc_xx_0, 0))    
 
     def get_samp_rate(self):
         return self.samp_rate
