@@ -45,18 +45,22 @@ ________________________________________________________________________________
 __________________________________________________________________________________<br>
 
 ## Sample rate
-<br>
+
 You have the choice between various sample rates from 1536 to 8192 kHz. Some values have a special destination:
 Specifies the sample frequency in MHz, values between 2MHz and 10MHz are permitted. Decimation can be used to obtain lower sample rates.
 <br>
 1) 1792 kHz: for use with an IF of 450 kHz.<br>
 2) 6400 kHz: for use with an IF of 1620 kHz.<br>
 3) 8192 kHz: for use with an IF of 2048 kHz.<br>
+
 ## LO Mode Enumerated Type
+
 Select LO Auto  This will select the best LO not to have ded spot<br>
 ## AGC Control Enumerated Type
+
 AGC True  this is to enable Hardware AGC<br>
 ## Minimum IF Gain
+
 mir_sdr_EXTENDED_MIN_GR = 0,//  0 to 59mir_sdr_NORMAL_MIN_GR   = 20// 20 to 59<br>
 Select 0 for for no attenuation<br>
 
@@ -81,6 +85,7 @@ if decimation n is 8 or higher: Fc = SR/n. The device center frequency is half t
 in svxlink.conf, [Tx1]<br>
 AUDIO_DEV=udp:127.0.0.1:1233<br>
 arecord -c1 -r48000 -fS16_LE - | nc -l -u 1233 | csdr convert_i16_f | csdr gain_ff 7000 | csdr convert_f_samplerf 20833 | sudo rpitx -i - -m RF -s 48000 -f YOUR_FREQ
+
 ## Sending from Gnuradio
 In Gnuradio use the block "TCP sink" and select port 8011, localhost, tcp, client<br>
 Make sure the -s clock is the same as the Gnuradio<br>
