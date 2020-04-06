@@ -36,16 +36,13 @@ This selects the IF frequency between these values:<br>
 Description:A command which converts the sampled IF data obtainedfrom streamed datato I and Q datain a zero IF format.<br>
 The functions convertsfrom low IF to zero IF by mixing, filtering and decimating the sampled IF data.<br>  
 The function will only operate correctly for the parameters detailed in the table below.<br> 
-|  IF Frequency   |    IF Bandwidth   |   Input Sample Rate    |   Output Sample Rate   |   Decimation Factor   |<br>
-_________________________________________________________________________________________________________________<br>
-|      450kHz     |        200kHz     |          2MS/s         |        0.5MS/s         |      4                |<br>
-|      450kHz     |        300kHz     |          2MS/s         |        0.5MS/s         |      4                |<br>
-|      450kHz     |        600kHz     |          2MS/s         |        1MS/s           |      2                |<br>
-|      2048kHz    |        1536kHz    |          8.192MS/s     |        2.048MS/s       |      4                |<br>
-_________________________________________________________________________________________________________________<br>
-
-
-
+|IF Frequency|IF Bandwidth|Input Sample Rate|Output Sample Rate|Decimation Factor|<br>
+__________________________________________________________________________________<br>
+|450kHz      |200kHz     |2MS/s             |0.5MS/s           |4                |<br>
+|450kHz      |300kHz     |2MS/s             |0.5MS/s           |4                |<br>
+|450kHz      |600kHz     |2MS/s             |1MS/s             |2                |<br>
+|2048kHz     |1536kHz    |8.192MS/s         |2.048MS/s         |4                |<br>
+__________________________________________________________________________________<br>
 
 ## Sample rate
 <br>
