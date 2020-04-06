@@ -2,6 +2,52 @@
 This repository will have the Transponder and Telemetry software applications.
 Diagram
 ![Block Diagram](Digital_Transponder_v4.jpg?raw=true "Block Diagram")<br>
+# MSI input SDR chipset configueration for Sateliite
+## IF bandwidth<br>
+<br>
+This selects the IF filter. Following bandwidths are available according to MSi001 specs:<br>
+
+1) 200 kHz <<<<<<<<<<<<<br>
+2) 300 kHz<br>
+3) 600 kHz<br>
+4) 1536 kHz<br>
+5) 5000 kHz<br>
+6) 6000 kHz<br>
+7) 7000 kHz<br>
+8) 8000 kHz<br>
+
+## IF Type
+<br>
+This selects the IF frequency between these values:<br>
+<br>
+1) 0 for zero IF<br>
+2) 450 kHz: you have to set sample rate to 1792 kHz (7) and use decimation (8) with an infradyne position (9)<br>
+3) 1620 kHz: you have to set sample rate to 6400 kHz (7) and use decimation (8) with an infradyne position (9)<br>
+4) 2048 kHz: you have to set sample rate to 8192 kHz (7) and use decimation (8) with an infradyne position (9)<br>
+
+## Sample rate
+<br>
+You have the choice between various sample rates from 1536 to 8192 kHz. Some values have a special destination:
+<br>
+1) 1792 kHz: for use with an IF of 450 kHz.<br>
+2) 6400 kHz: for use with an IF of 1620 kHz.<br>
+3) 8192 kHz: for use with an IF of 2048 kHz.<br>
+
+## Decimation
+<br>
+Decimation in powers of two from 1 (no decimation) to 64.<br>
+## Decimated bandpass center frequency position relative the SDRplay center frequency
+
+Cen: the decimation operation takes place around the SDRplay center frequency Fs<br>
+Inf: the decimation operation takes place around Fs - Fc.<br>
+Sup: the decimation operation takes place around Fs + Fc.<br>
+
+## With SR as the sample rate before decimation Fc is calculated as:
+
+if decimation n is 4 or lower: Fc = SR/2^(log2(n)-1). The device center frequency is on the side of the baseband. You need a RF filter bandwidth at least twice the baseband.<br>
+if decimation n is 8 or higher: Fc = SR/n. The device center frequency is half the baseband away from the side of the baseband. You need a RF filter bandwidth at least 3 times the baseband.<br>
+# IF Attenuator
+
 
 # Exsample for rpitx V2 not (usable on PI 4)
 ## Send Audio from svxlink
