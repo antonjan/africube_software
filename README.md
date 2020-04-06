@@ -33,16 +33,16 @@ This selects the IF frequency between these values:<br>
 3) 1620 kHz: you have to set sample rate to 6400 kHz (7) and use decimation (8) with an infradyne position (9)<br>
 4) 2048 kHz: you have to set sample rate to 8192 kHz (7) and use decimation (8) with an infradyne position (9)<br>
 
-Description:A command which converts the sampled IF data obtainedfrom streamed datato I and Q datain a zero IF format.
-The functions convertsfrom low IF to zero IF by mixing, filtering and decimating the sampled IF data.  
-The function will only operate correctly for the parameters detailed in the table below. 
-|  IF Frequency   |    IF Bandwidth   |   Input Sample Rate    |   Output Sample Rate   |   Decimation Factor   |
-_________________________________________________________________________________________________________________
-|      450kHz     |        200kHz     |          2MS/s         |        0.5MS/s         |      4                |
-|      450kHz     |        300kHz     |          2MS/s         |        0.5MS/s         |      4                |
-|      450kHz     |        600kHz     |          2MS/s         |        1MS/s           |      2                |
-|      2048kHz    |        1536kHz    |          8.192MS/s     |        2.048MS/s       |      4                |
-_________________________________________________________________________________________________________________
+Description:A command which converts the sampled IF data obtainedfrom streamed datato I and Q datain a zero IF format.<br>
+The functions convertsfrom low IF to zero IF by mixing, filtering and decimating the sampled IF data.<br>  
+The function will only operate correctly for the parameters detailed in the table below.<br> 
+|  IF Frequency   |    IF Bandwidth   |   Input Sample Rate    |   Output Sample Rate   |   Decimation Factor   |<br>
+_________________________________________________________________________________________________________________<br>
+|      450kHz     |        200kHz     |          2MS/s         |        0.5MS/s         |      4                |<br>
+|      450kHz     |        300kHz     |          2MS/s         |        0.5MS/s         |      4                |<br>
+|      450kHz     |        600kHz     |          2MS/s         |        1MS/s           |      2                |<br>
+|      2048kHz    |        1536kHz    |          8.192MS/s     |        2.048MS/s       |      4                |<br>
+_________________________________________________________________________________________________________________<br>
 
 
 
