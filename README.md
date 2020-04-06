@@ -33,13 +33,35 @@ This selects the IF frequency between these values:<br>
 3) 1620 kHz: you have to set sample rate to 6400 kHz (7) and use decimation (8) with an infradyne position (9)<br>
 4) 2048 kHz: you have to set sample rate to 8192 kHz (7) and use decimation (8) with an infradyne position (9)<br>
 
+Description:A command which converts the sampled IF data obtainedfrom streamed datato I and Q datain a zero IF format.
+The functions convertsfrom low IF to zero IF by mixing, filtering and decimating the sampled IF data.  
+The function will only operate correctly for the parameters detailed in the table below. 
+|  IF Frequency   |    IF Bandwidth   |   Input Sample Rate    |   Output Sample Rate   |   Decimation Factor   |
+_________________________________________________________________________________________________________________
+|      450kHz     |        200kHz     |          2MS/s         |        0.5MS/s         |      4                |
+|      450kHz     |        300kHz     |          2MS/s         |        0.5MS/s         |      4                |
+|      450kHz     |        600kHz     |          2MS/s         |        1MS/s           |      2                |
+|      2048kHz    |        1536kHz    |          8.192MS/s     |        2.048MS/s       |      4                |
+_________________________________________________________________________________________________________________
+
+
+
+
 ## Sample rate
 <br>
 You have the choice between various sample rates from 1536 to 8192 kHz. Some values have a special destination:
+Specifies the sample frequency in MHz, values between 2MHz and 10MHz are permitted. Decimation can be used to obtain lower sample rates.
 <br>
 1) 1792 kHz: for use with an IF of 450 kHz.<br>
 2) 6400 kHz: for use with an IF of 1620 kHz.<br>
 3) 8192 kHz: for use with an IF of 2048 kHz.<br>
+## LO Mode Enumerated Type
+Select LO Auto  This will select the best LO not to have ded spot<br>
+## AGC Control Enumerated Type
+AGC True  this is to enable Hardware AGC<br>
+## Minimum IF Gain
+mir_sdr_EXTENDED_MIN_GR = 0,//  0 to 59mir_sdr_NORMAL_MIN_GR   = 20// 20 to 59<br>
+Select 0 for for no attenuation<br>
 
 ## Decimation
 <br>
