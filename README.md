@@ -3,6 +3,13 @@ This repository will have the Transponder and Telemetry software applications.
 Diagram
 ![Block Diagram](Digital_Transponder_v4.jpg?raw=true "Block Diagram")<br>
 # MSI input SDR chipset configueration for Sateliite
+## API Implimentation MSI (sdrplay rsp1)
+static sptr make(double rf_freq, double bw, bool agc_enabled, double if_atten_db,
+                         bool dc_offset_mode, bool iq_balance_mode, bool debug_enabled, int if_type, int lo_mode,
+                         double sample_rate, int lna_atten_step,
+                         std::string device_serial);<br>
+if (gain >= 20.0 && gain <= 59.0 && gain != _gRdB)                         
+                         
 ## IF bandwidth<br>
 <br>
 This selects the IF filter. Following bandwidths are available according to MSi001 specs:<br>
