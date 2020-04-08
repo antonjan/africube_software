@@ -1,1 +1,1 @@
-Africube Transponder:mode:Lat:long:Elivation:status
+ZR6AIC>TOCALL::ADDRCALL :Africube,0,1,5,5,4,7,6,83.3,-25,2

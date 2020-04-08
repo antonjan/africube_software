@@ -4,7 +4,7 @@
 # GNU Radio Python Flow Graph
 # Title: final_africube.py
 # Author: Anton Janovsky
-# Generated: Mon Apr  6 16:31:00 2020
+# Generated: Mon Apr  6 09:54:00 2020
 ##################################################
 
 from gnuradio import analog
@@ -33,8 +33,8 @@ class top_block_africube_final(gr.top_block):
         ##################################################
         # Blocks
         ##################################################
-        self.sdrplay_rsp1_source_0 = sdrplay.rsp1_source(435.100e6, 200, True, 0, False, False,
-                False, 0, 1, samp_rate, True, '0')
+        self.sdrplay_rsp1_source_0 = sdrplay.rsp1_source(435.100e6, 1536, True, 40, True, True,
+                True, 0, 1, samp_rate, True, '0')
             
         self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
                 interpolation=1,
