@@ -2,12 +2,90 @@
 This repository will have the Transponder and Telemetry software applications.
 Diagram
 ![Block Diagram](Digital_Transponder_v4.jpg?raw=true "Block Diagram")<br>
+# MSI input SDR chipset configueration for Sateliite
+Importint MSI / sdrplay API dokuments  https://www.sdrplay.com/docs/SDRplay_SDR_API_Specification.pdf
+## API Implimentation MSI (sdrplay rsp1)
+static sptr make(double rf_freq, double bw, bool agc_enabled, double if_atten_db,
+                         bool dc_offset_mode, bool iq_balance_mode, bool debug_enabled, int if_type, int lo_mode,
+                         double sample_rate, int lna_atten_step,
+                         std::string device_serial);<br>
+if (gain >= 20.0 && gain <= 59.0 && gain != _gRdB)                         
+                         
+## IF bandwidth<br>
+<br>
+This selects the IF filter. Following bandwidths are available according to MSi001 specs:<br>
+
+1) 200 kHz <<<<<<<<<<<<<br>
+2) 300 kHz<br>
+3) 600 kHz<br>
+4) 1536 kHz<br>
+5) 5000 kHz<br>
+6) 6000 kHz<br>
+7) 7000 kHz<br>
+8) 8000 kHz<br>
+
+## IF Type
+<br>
+This selects the IF frequency between these values:<br>
+<br>
+1) 0 for zero IF<br>
+2) 450 kHz: you have to set sample rate to 1792 kHz (7) and use decimation (8) with an infradyne position (9)<br>
+3) 1620 kHz: you have to set sample rate to 6400 kHz (7) and use decimation (8) with an infradyne position (9)<br>
+4) 2048 kHz: you have to set sample rate to 8192 kHz (7) and use decimation (8) with an infradyne position (9)<br>
+
+Description:A command which converts the sampled IF data obtainedfrom streamed datato I and Q datain a zero IF format.<br>
+The functions convertsfrom low IF to zero IF by mixing, filtering and decimating the sampled IF data.<br>  
+The function will only operate correctly for the parameters detailed in the table below.<br> 
+|IF Frequency|IF Bandwidth|Input Sample Rate|Output Sample Rate|Decimation Factor|<br>
+__________________________________________________________________________________<br>
+|450kHz      |200kHz     |2MS/s             |0.5MS/s           |4                |<br>
+|450kHz      |300kHz     |2MS/s             |0.5MS/s           |4                |<br>
+|450kHz      |600kHz     |2MS/s             |1MS/s             |2                |<br>
+|2048kHz     |1536kHz    |8.192MS/s         |2.048MS/s         |4                |<br>
+__________________________________________________________________________________<br>
+
+## Sample rate
+
+You have the choice between various sample rates from 1536 to 8192 kHz. Some values have a special destination:
+Specifies the sample frequency in MHz, values between 2MHz and 10MHz are permitted. Decimation can be used to obtain lower sample rates.
+<br>
+1) 1792 kHz: for use with an IF of 450 kHz.<br>
+2) 6400 kHz: for use with an IF of 1620 kHz.<br>
+3) 8192 kHz: for use with an IF of 2048 kHz.<br>
+
+## LO Mode Enumerated Type
+
+Select LO Auto  This will select the best LO not to have ded spot<br>
+## AGC Control Enumerated Type
+
+AGC True  this is to enable Hardware AGC<br>
+## Minimum IF Gain
+
+mir_sdr_EXTENDED_MIN_GR = 0,//  0 to 59mir_sdr_NORMAL_MIN_GR   = 20// 20 to 59<br>
+Select 0 for for no attenuation<br>
+
+## Decimation
+<br>
+Decimation in powers of two from 1 (no decimation) to 64.<br>
+## Decimated bandpass center frequency position relative the SDRplay center frequency
+
+Cen: the decimation operation takes place around the SDRplay center frequency Fs<br>
+Inf: the decimation operation takes place around Fs - Fc.<br>
+Sup: the decimation operation takes place around Fs + Fc.<br>
+
+## With SR as the sample rate before decimation Fc is calculated as:
+
+if decimation n is 4 or lower: Fc = SR/2^(log2(n)-1). The device center frequency is on the side of the baseband. You need a RF filter bandwidth at least twice the baseband.<br>
+if decimation n is 8 or higher: Fc = SR/n. The device center frequency is half the baseband away from the side of the baseband. You need a RF filter bandwidth at least 3 times the baseband.<br>
+# IF Attenuator
+
 
 # Exsample for rpitx V2 not (usable on PI 4)
 ## Send Audio from svxlink
 in svxlink.conf, [Tx1]<br>
 AUDIO_DEV=udp:127.0.0.1:1233<br>
 arecord -c1 -r48000 -fS16_LE - | nc -l -u 1233 | csdr convert_i16_f | csdr gain_ff 7000 | csdr convert_f_samplerf 20833 | sudo rpitx -i - -m RF -s 48000 -f YOUR_FREQ
+
 ## Sending from Gnuradio
 In Gnuradio use the block "TCP sink" and select port 8011, localhost, tcp, client<br>
 Make sure the -s clock is the same as the Gnuradio<br>
@@ -25,6 +103,7 @@ Usage: sendiq [-i File Input][-s Samplerate][-l] [-f Frequency] [-h Harmonic num
 
 # Aditional gnuradio addons requerd
 libboostall-dev<br>
+swig<br>
 gnuradio 3.7<br>
 gr-bruninga Requierd for FSK generation for FM telemetry<br>
 gr-sdrplay  Requierd for MSI miri sdr froned chipset driver<br>
