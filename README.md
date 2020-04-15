@@ -110,6 +110,45 @@ gr-sdrplay  Requierd for MSI miri sdr froned chipset driver<br>
 gr-ax25 Requierd for AFSK decoding for command controle<br>
 gr-osmosdr (not reqierd any more as it is using to much CPU)<br>
 
+gnuradio-config-info --enabled-components
+python-support;
+testing-support;
+doxygen;sphinx;
+gnuradio-runtime;
+gr-ctrlport;
+gr-blocks;
+gr-fec;
+gr-fft;
+gr-filter;
+gr-analog;
+gr-digital;
+gr-dtv;
+gr-atsc;
+gr-audio;
+* alsa;
+* oss;
+* jack;
+* portaudio;
+gr-comedi;
+gr-channels;
+gr-noaa;
+gr-pager;
+gr-qtgui;
+gr-trellis;
+gr-uhd;
+gr-utils;
+gr-video-sdl;
+gr-vocoder;
+* codec2;
+* freedv;
+* gsm;
+gr-fcd;
+gr-wavelet;
+gr-wxgui;
+gr-zeromq;
+gnuradio-companion
+
+
 # Ground Station Configuration.
 ![Link to the Wiki on how to enable a windows telemetry configuration](https://github.com/antonjan/africube_software/wiki/Telemetry-Decoding?raw=true "Ground Station")<br>
 
