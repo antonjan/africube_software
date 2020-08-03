@@ -1,0 +1,5 @@
+python ./switch_beacon_on.py
+sleep 1
+echo "ZR6AIC>ZR6AIC,WIDE1-1:=3807.41N/212006.78WbMESSAGE" >> ./XMIT/TX
+sleep 1
+python ./switch_beacon_off.py
