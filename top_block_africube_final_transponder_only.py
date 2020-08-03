@@ -1,7 +1,11 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
+##################################################
+# GNU Radio Python Flow Graph
+# Title: final_africube.py
 # Author: Anton Janovsky
-# Generated: Mon Apr  6 16:31:00 2020
+# Generated: Mon Apr  6 09:54:00 2020
+##################################################
 
 from gnuradio import analog
 from gnuradio import audio
@@ -29,8 +33,8 @@ class top_block_africube_final(gr.top_block):
         ##################################################
         # Blocks
         ##################################################
-        self.sdrplay_rsp1_source_0 = sdrplay.rsp1_source(435.100e6, 200, True, 0, False, False,
-                False, 0, 1, samp_rate, True, '0')
+        self.sdrplay_rsp1_source_0 = sdrplay.rsp1_source(435.100e6, 1536, True, 40, True, True,
+                True, 0, 1, samp_rate, True, '0')
             
         self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
                 interpolation=1,
@@ -58,13 +62,10 @@ class top_block_africube_final(gr.top_block):
         	max_dev=1800,
         	fh=-1.0,
                 )
-        self.analog_agc_xx_0 = analog.agc_cc(1e-4, 1.0, 1.0)
-        self.analog_agc_xx_0.set_max_gain(4)
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.analog_agc_xx_0, 0), (self.blocks_multiply_const_vxx_0, 0))    
         self.connect((self.analog_nbfm_tx_0, 0), (self.blocks_multiply_xx_1, 1))    
         self.connect((self.analog_sig_source_x_0, 0), (self.blocks_multiply_xx_1, 0))    
         self.connect((self.audio_source_0, 0), (self.blocks_multiply_const_vxx_2_0, 0))    
@@ -72,7 +73,8 @@ class top_block_africube_final(gr.top_block):
         self.connect((self.blocks_multiply_const_vxx_2, 0), (self.blocks_null_sink_1, 0))    
         self.connect((self.blocks_multiply_const_vxx_2_0, 0), (self.analog_nbfm_tx_0, 0))    
         self.connect((self.blocks_multiply_xx_1, 0), (self.blocks_multiply_const_vxx_2, 0))    
-        self.connect((self.rational_resampler_xxx_0, 0), (self.analog_agc_xx_0, 0))    
+        self.connect((self.rational_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_0, 0))    
+        self.connect((self.sdrplay_rsp1_source_0, 0), (self.rational_resampler_xxx_0, 0))    
 
     def get_samp_rate(self):
         return self.samp_rate
