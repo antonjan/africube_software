@@ -4,7 +4,7 @@
 # GNU Radio Python Flow Graph
 # Title: Africube
 # Author: Anton Janovsky
-# Generated: Wed Jun 24 19:39:05 2020
+# Generated: Fri Aug 14 19:26:16 2020
 ##################################################
 
 from gnuradio import analog
@@ -45,11 +45,15 @@ class top_block(gr.top_block):
         self.sdrplay_rsp1_source_0 = sdrplay.rsp1_source(435.1e6, 1536, True, 40, False, False,
                 False, 0, 1, samp_rate, True, '0')
             
+        self.low_pass_filter_0 = filter.fir_filter_ccf(1, firdes.low_pass(
+        	1, samp_rate_Baseband, 20000, 2500, firdes.WIN_HAMMING, 6.76))
+        self.high_pass_filter_0 = filter.fir_filter_ccf(1, firdes.high_pass(
+        	1, samp_rate_Baseband, 24188, 2500, firdes.WIN_HAMMING, 6.76))
         self.fir_filter_xxx_0 = filter.fir_filter_ccc(25, (1, ))
         self.fir_filter_xxx_0.declare_sample_delay(0)
         self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)
         self.blocks_multiply_const_vxx_3 = blocks.multiply_const_vcc((beacon, ))
-        self.blocks_multiply_const_vxx_2 = blocks.multiply_const_vff((0.26, ))
+        self.blocks_multiply_const_vxx_2 = blocks.multiply_const_vff((0.5, ))
         self.blocks_multiply_const_vxx_1 = blocks.multiply_const_vcc((20, ))
         self.blocks_add_xx_0 = blocks.add_vcc(1)
         self.blks2_tcp_sink_1 = grc_blks2.tcp_sink(
@@ -59,12 +63,12 @@ class top_block(gr.top_block):
         	server=False,
         )
         self.audio_source_0 = audio.source(44100, 'plughw:0,1', True)
-        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate_Baseband, analog.GR_COS_WAVE, -25100, 0.8, 0)
+        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate_Baseband, analog.GR_COS_WAVE, -30000, 0.300, 0)
         self.analog_nbfm_tx_0 = analog.nbfm_tx(
         	audio_rate=44100,
         	quad_rate=samp_rate_Baseband,
         	tau=75e-6,
-        	max_dev=2.6e3,
+        	max_dev=3500,
         	fh=-1.0,
                 )
 
@@ -75,11 +79,13 @@ class top_block(gr.top_block):
         self.connect((self.analog_sig_source_x_0, 0), (self.blocks_multiply_xx_0, 0))    
         self.connect((self.audio_source_0, 0), (self.blocks_multiply_const_vxx_2, 0))    
         self.connect((self.blocks_add_xx_0, 0), (self.blks2_tcp_sink_1, 0))    
-        self.connect((self.blocks_multiply_const_vxx_1, 0), (self.blocks_add_xx_0, 1))    
+        self.connect((self.blocks_multiply_const_vxx_1, 0), (self.low_pass_filter_0, 0))    
         self.connect((self.blocks_multiply_const_vxx_2, 0), (self.analog_nbfm_tx_0, 0))    
-        self.connect((self.blocks_multiply_const_vxx_3, 0), (self.blocks_add_xx_0, 0))    
+        self.connect((self.blocks_multiply_const_vxx_3, 0), (self.high_pass_filter_0, 0))    
         self.connect((self.blocks_multiply_xx_0, 0), (self.blocks_multiply_const_vxx_3, 0))    
         self.connect((self.fir_filter_xxx_0, 0), (self.blocks_multiply_const_vxx_1, 0))    
+        self.connect((self.high_pass_filter_0, 0), (self.blocks_add_xx_0, 0))    
+        self.connect((self.low_pass_filter_0, 0), (self.blocks_add_xx_0, 1))    
         self.connect((self.sdrplay_rsp1_source_0, 0), (self.fir_filter_xxx_0, 0))    
 
     def get_samp_rate_Baseband(self):
@@ -87,6 +93,8 @@ class top_block(gr.top_block):
 
     def set_samp_rate_Baseband(self, samp_rate_Baseband):
         self.samp_rate_Baseband = samp_rate_Baseband
+        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate_Baseband, 20000, 2500, firdes.WIN_HAMMING, 6.76))
+        self.high_pass_filter_0.set_taps(firdes.high_pass(1, self.samp_rate_Baseband, 24188, 2500, firdes.WIN_HAMMING, 6.76))
         self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate_Baseband)
 
     def get_samp_rate(self):
