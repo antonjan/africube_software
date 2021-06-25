@@ -2,22 +2,23 @@
 This repository will have the Transponder and Telemetry software applications.
 Diagram
 # install software
-  sudo update
-  sudo upgrade
-  sudo apt-get install git gnuradio python-pip
-  #sudo pip install afsk
-  cd
-  #install librpitx
-  git clone https://github.com/F5OEO/librpitx
-  cd librpitx/src
-  make
-  #install CSDR
-  cd
-  git clone https://github.com/simonyiszk/csdr.git
-  cd csdr
-  ./configure
-  make
-  sudo make install
+
+  sudo update<br>
+  sudo upgrade<br>
+  sudo apt-get install git gnuradio python-pip<br>
+  #sudo pip install afsk<br>
+  cd<br>
+  #install librpitx<br>
+  git clone https://github.com/F5OEO/librpitx<br>
+  cd librpitx/src<br>
+  make<br>
+  #install CSDR<br>
+  cd<br>
+  git clone https://github.com/simonyiszk/csdr.git<br>
+  cd csdr<br>
+  ./configure<br>
+  make<br>
+  sudo make install<br>
   
   
   # check if all works
