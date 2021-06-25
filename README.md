@@ -3,31 +3,49 @@ This repository will have the Transponder and Telemetry software applications.
 Diagram
 # install software
 
-  sudo update<br>
-  sudo upgrade<br>
-  sudo apt-get install git gnuradio python-pip<br>
-  #sudo pip install afsk<br>
-  cd<br>
-  #install librpitx<br>
-  git clone https://github.com/F5OEO/librpitx<br>
-  cd librpitx/src<br>
-  make<br>
-  #install CSDR<br>
-  cd<br>
-  git clone https://github.com/simonyiszk/csdr.git<br>
-  cd csdr<br>
-  ./configure<br>
-  make<br>
-  sudo make install<br>
+    sudo update
+    sudo upgrade
+    sudo apt-get install git python-pip
+    #sudo pip install afsk
+    cd
+    #install librpitx
+    git clone https://github.com/F5OEO/librpitx
+    cd librpitx/src
+    make
+    #install CSDR
+    cd
+    git clone https://github.com/simonyiszk/csdr.git
+    cd csdr
+    ./configure
+    make
+    sudo make install
 # Building Gnuradio from scratch
-  #Create a swap file<br>
-  sudo fallocate -l 2G /swapfile<br>
-  sudo chmod 600 /swapfile<br>
-  sudo mkswap /swapfile<br>
-  sudo swapon /swapfile<br>
+    #Create a swap file
+    sudo fallocate -l 2G /swapfile
+    sudo chmod 600 /swapfile
+    sudo mkswap /swapfile
+    sudo swapon /swapfile
   #To make the swap file permanent, add this line to /etc/fstab<br>
   /swapfile  none  swap  sw  0  0<br>
+See examples/README on the cmake command to run in the build_RP directory for compiling and linking gr-rpitx with Buildroot supporting GNU Radio (configuration files for RPi3 and RPi4 are for example found in the configs directory of https://github.com/oscimp/oscimp_br2_external).
 
+To summarize the content of examples/README, assuming Buildoot is installed in $BUILDROOT and the Raspberry Pi IP address is $IP_RPI:
+
+# Install gr-rpitx module for gnuradio
+    cd
+    git clone https://github.com/jmfriedt/gr-rpitx.git
+    
+# installing gunradio from source (i have to compile gnuradio as I want to add custome modules to gnuradio)
+
+    sudo apt update --allow-releaseinfo-change
+    sudo apt upgrade
+    sudo apt install git cmake g++ libboost-all-dev libgmp-dev swig python3-numpy \
+    python3-mako python3-sphinx python3-lxml doxygen libfftw3-dev \
+    libsdl1.2-dev libgsl-dev libqwt-qt5-dev libqt5opengl5-dev python3-pyqt5 \
+    liblog4cpp5-dev libzmq3-dev python3-yaml python3-click python3-click-plugins \
+    python3-zmq python3-scipy libpthread-stubs0-dev libusb-1.0-0 libusb-1.0-0-dev \
+    libudev-dev python3-setuptools build-essential liborc-0.4-0 liborc-0.4-dev \
+    python3-gi-cairo
   
   # check if all works
   
