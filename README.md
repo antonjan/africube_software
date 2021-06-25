@@ -12,11 +12,12 @@ Diagram
     git clone https://github.com/F5OEO/librpitx
     cd librpitx/src
     make
+    sudo make install
     #install CSDR
     cd
     git clone https://github.com/simonyiszk/csdr.git
     cd csdr
-    ./configure
+    ./configure  #looks like you dont need to run this any more
     make
     sudo make install
 # Building Gnuradio from scratch
@@ -34,6 +35,8 @@ To summarize the content of examples/README, assuming Buildoot is installed in $
 # Install gr-rpitx module for gnuradio
     cd
     git clone https://github.com/jmfriedt/gr-rpitx.git
+    cd gr-rpitx
+    
     
 # installing gunradio from source (i have to compile gnuradio as I want to add custome modules to gnuradio)
 
@@ -47,7 +50,10 @@ To summarize the content of examples/README, assuming Buildoot is installed in $
     libudev-dev python3-setuptools build-essential liborc-0.4-0 liborc-0.4-dev \
     python3-gi-cairo
     sudo apt install python-docutils cairo pygccxml
-
+    sudo apt-get remove python-pybind11
+    pip install python-pybind11
+    export PATH="/home/pi/.local/bin:$PATH"
+    make
 
   
   # check if all works
