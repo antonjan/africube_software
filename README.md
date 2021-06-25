@@ -1,6 +1,30 @@
-# Africube_software
+# Africube_software (pi3)
 This repository will have the Transponder and Telemetry software applications.
 Diagram
+# install software
+  sudo update
+  sudo upgrade
+  sudo apt-get install git gnuradio python-pip
+  #sudo pip install afsk
+  cd
+  # install librpitx
+  git clone https://github.com/F5OEO/librpitx
+  cd librpitx/src
+  make
+  # install CSDR
+  cd
+  git clone https://github.com/simonyiszk/csdr.git
+  cd csdr
+  ./configure
+  make
+  sudo make install
+  
+  
+  # check if all works
+  
+  
+  
+
 ![Block Diagram](Digital_Transponder_v4.jpg?raw=true "Block Diagram")<br>
 # MSI input SDR chipset configueration for Sateliite
 Importint MSI / sdrplay API dokuments  https://www.sdrplay.com/docs/SDRplay_SDR_API_Specification.pdf
