@@ -7,11 +7,11 @@ Diagram
   sudo apt-get install git gnuradio python-pip
   #sudo pip install afsk
   cd
-  # install librpitx
+  #install librpitx
   git clone https://github.com/F5OEO/librpitx
   cd librpitx/src
   make
-  # install CSDR
+  #install CSDR
   cd
   git clone https://github.com/simonyiszk/csdr.git
   cd csdr
