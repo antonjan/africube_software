@@ -19,7 +19,15 @@ Diagram
   ./configure<br>
   make<br>
   sudo make install<br>
-  
+# Building Gnuradio from scratch
+  #Create a swap file<br>
+  sudo fallocate -l 2G /swapfile<br>
+  sudo chmod 600 /swapfile<br>
+  sudo mkswap /swapfile<br>
+  sudo swapon /swapfile<br>
+  #To make the swap file permanent, add this line to /etc/fstab<br>
+  /swapfile  none  swap  sw  0  0<br>
+
   
   # check if all works
   
