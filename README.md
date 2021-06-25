@@ -46,6 +46,9 @@ To summarize the content of examples/README, assuming Buildoot is installed in $
     python3-zmq python3-scipy libpthread-stubs0-dev libusb-1.0-0 libusb-1.0-0-dev \
     libudev-dev python3-setuptools build-essential liborc-0.4-0 liborc-0.4-dev \
     python3-gi-cairo
+    sudo apt install python-docutils cairo pygccxml
+
+
   
   # check if all works
   
