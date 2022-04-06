@@ -1,0 +1,6 @@
+Selected audio system is ALSA, but audio on your system is handled by PulseAudio. Expect problems with timing.
+In this situation it is recommended to run cw like this:
+cw -s p
+
+Press Enter key to continue
+FRICUBE DE ZR6AIC R0 T0

@@ -1,0 +1,74 @@
+#!/bin/bash
+SHELL=/bin/bash
+COLORTERM=truecolor
+XDG_CONFIG_DIRS=/etc/xdg
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+XDG_MENU_PREFIX=lxde-pi-
+LANGUAGE=en_US.UTF-8
+_LXSESSION_PID=590
+SSH_AUTH_SOCK=/tmp/ssh-uXGZduyCerPK/agent.590
+XDG_CONFIG_HOME=/home/pi/.config
+DESKTOP_SESSION=LXDE-pi
+SSH_AGENT_PID=628
+NO_AT_BRIDGE=1
+XDG_SEAT=seat0
+PWD=/home/pi
+XDG_SESSION_DESKTOP=lightdm-xsession
+LOGNAME=pi
+QT_QPA_PLATFORMTHEME=qt5ct
+XDG_SESSION_TYPE=x11
+GPG_AGENT_INFO=/run/user/1000/gnupg/S.gpg-agent:0:1
+XAUTHORITY=/home/pi/.Xauthority
+XDG_GREETER_DATA_DIR=/var/lib/lightdm/data/pi
+HOME=/home/pi
+LANG=en_US.UTF-8
+XDG_CURRENT_DESKTOP=LXDE
+VTE_VERSION=5402
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+XDG_SESSION_CLASS=user
+PYTHONPATH=/usr/local/lib/python3/dist-packages:
+TERM=xterm-256color
+#USER=pi
+DISPLAY=:0.0
+SHLVL=1
+XDG_VTNR=7
+XDG_SESSION_ID=1
+XDG_RUNTIME_DIR=/run/user/1000
+LC_ALL=en_US.UTF-8
+XDG_DATA_DIRS=/usr/share/fkms:/usr/local/share:/usr/share/raspi-ui-overrides:/usr/share:/usr/share/gdm:/var/lib/menu-xdg
+PATH=/home/pi/.local/bin:/home/pi/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
+GDMSESSION=lightdm-xsession
+SAL_USE_VCLPLUGIN=gtk3
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+OLDPWD=/home/pi/sh
+TEXTDOMAIN=Linux-PAM
+sleep 10
+export PATH=/home/pi/.local/bin:/home/pi/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:$PATH
+/usr/bin/sudo modprobe snd-aloop
+sleep 5
+/usr/bin/sudo /home/pi/sh/stop_sdrplay_service.sh
+sleep 5
+/usr/bin/sudo /home/pi/sh/start_sdrplay_service.sh
+sleep 5
+/usr/bin/sudo /home/pi/sh/check_sdrplay_sopy_connector.sh
+sleep 3
+/usr/bin/sudo /home/pi/sh/check_sdrplay_sopy_connector.sh
+sleep 3
+#export XDG_RUNTIME_DIR=/run/user/0
+#usbreset 1df7:2500
+sleep 5
+#export XAUTHORITY=/home/pi/.Xauthority 
+#export DISPLAY=localhost:11.0
+export PATH=/usr/local/bin:/root/.local/bin:/usr/sbin:/usr/sbin:/usr/bin:/usr/lib:/root/.local/lib/python3.7/site-packages:$PATH
+export PYTHONPATH=/usr/local/lib/python3/dist-packages:/usr/local/lib/python2.7/dist-packages/construct:/usr/local/lib/python3.7/dist-packages:/home/pi/.local/lib/python3.7/site-packages:/home/pi/sh:/usr/local/lib/python3/dist-packages/rpitx:$PYTHONPATH
+export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib/python2.7/dist-packages/construct:/usr/local/lib/python3/dist-packages/rpitx:$LD_LIBRARY_CONFIG
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/home/pi/.local/lib/python3.7/site-packages/construct:/usr/local/lib/python3/dist-packages/rpitx:$PKG_CONFIG_PATH
+#/usr/local/bin/gnuradio-companion
+#/home/pi/rptx_trasnsmitter.py
+#/usr/bin/python3 -u /home/pi/gnuradio_radios/SDRPlay.py
+#/usr/bin/python3 -u /home/pi/africube_software/africube_top_block.py
+#/usr/bin/python3 -u /home/pi/gnuradio_radios/test_rpitx.py
+sleep 5
+#/usr/bin/sudo /usr/bin/python3 -u  /home/pi/gnuradio_radios/working_africube_transponder_and_beacon.py
+env > /home/pi/sh/env_sh_dump.txt
+/usr/bin/sudo /usr/bin/python3 -u /home/pi/gnuradio_radios/test_rpitx.py
