@@ -9,6 +9,8 @@ sudo modprobe snd-aloop
 sleep 1
 /usr/bin/python3 /home/pi/sh/set_sdr_rx_rf_gain.py
 sleep 1
+/usr/bin/python3 /home/pi/sh/set_beacon_offset_freq.py
+sleep 1
 while :
 do
 #	/home/pi/pySSTV/send_sstv.sh&
@@ -23,11 +25,13 @@ do
 	sleep 0.1
 	/usr/bin/python3 /home/pi/sh/beacon_off_xml_rpc.py
 	sleep 3
-	/usr/bin/python3 /home/pi/sh/beacon_on_xml_rpc.py
+	/usr/bin/python3 /home/pi/sh/beacon_on_voice_xml_rpc.py 
+	/usr/bin/python3 /home/pi/sh/set_tx_dev_high.py
 	sleep 0.1
 	/usr/bin/aplay -D plughw:2,0 /home/pi/sh/africube_voice.wav
 	sleep 0.1
 	/usr/bin/python3 /home/pi/sh/beacon_off_xml_rpc.py
+	/usr/bin/python3 /home/pi/sh/set_tx_dev_low.py
 	sleep 3
 	/usr/bin/python3 /home/pi/sh/beacon_on_xml_rpc.py
 	sleep 0.1
